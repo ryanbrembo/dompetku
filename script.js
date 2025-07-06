@@ -66,15 +66,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 const listMasuk = document.getElementById('list-transaksi');
                 const item = document.createElement("li");
 
-                localStorage.setItem('list-saldo-masuk', item)
+                let listSaldoMasuk = parseInt(localStorage.getItem('list-saldo-masuk'));
 
-                item.innerText = new Intl
-                    .NumberFormat('id-ID', {
-                        style: 'currency',
-                        currency: 'IDR',
-                        maximumFractionDigits: 0
-                    })
-                    .format(proms);
+                localStorage.setItem('list-saldo-masuk', listSaldoMasuk);
+
+                item.innerText = formatCurrency(proms);
                 listMasuk.appendChild(item);
                 item.style.color = 'green';
 
@@ -104,6 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.removeItem('saldo-masuk');
         localStorage.removeItem('pengeluaran');
         localStorage.removeItem('saldoBersih');
+        localStorage.removeItem('list-saldo-masuk');
         updateSaldoDisplay();
 
     });
@@ -128,13 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 localStorage.setItem("pengeluaran", totalSaldoKeluar);
 
-                const formateds = new Intl
-                    .NumberFormat('id-ID', {
-                        style: "currency",
-                        currency: "IDR",
-                        maximumFractionDigits: 0
-                    })
-                    .format(totalSaldoKeluar);
+                const formateds = formatCurrency(totalSaldoKeluar);
 
                 pengeluaran.innerText = formateds;
                 inputanKeluar.value = '';
