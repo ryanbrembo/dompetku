@@ -5,8 +5,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>Todolist Belanja</title>
         <link rel="stylesheet" href="dist/css/style.css"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
         <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossorigin="crossorigin">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
             rel="stylesheet">
         <script src="https://cdn.tailwindcss.com"></script>
     </head>
@@ -15,8 +20,10 @@
         <main>
             <div class="kotak-belanja">
                 <div>
-                    <div class="flex justify-center items-center bg-blue-500 rounded-2xl h-[70px]">
-                        <h1 class="text-xl font-semibold text-white">Belanja Bulanan</h1>
+                    <div
+                        class="flex flex-col justify-center items-center bg-gradient-to-r from-blue-500 to-blue-800 rounded-t-2xl h-[100px]">
+                        <h1 class="text-2xl font-semibold text-white">Belanja Bulanan</h1>
+                        <p class="text-white">Kelola keuangan anda dengan mudah</p>
                     </div>
 
                     <div class="total-saldo">
@@ -25,49 +32,60 @@
                         <div class="rekap">
                             <div>
                                 <h4>Pemasukan</h4>
-                                <span id="saldo-masuk" style="color: aquamarine;"></span>
+                                <span id="saldo-masuk" class="text-emerald-400"></span>
                             </div>
                             <div class="pengeluaran">
-                                <h4>Pengeluarn</h4>
-                                <span id="pengeluaran" style="color:rgb(235, 23, 23);"></span>
+                                <h4>Pengeluaran</h4>
+                                <span id="pengeluaran" class="text-red-400"></span>
                             </div>
                         </div>
                     </div>
-                    <div class="transaksi">
-                        <h3>Transaksi Terbaru</h3>
-                        <div class="list-transaksi" id="list-transaksi">
+                    <div class="transaksi p-2">
+                        <h1 class="mb-1 text-lg font-semibold border-b-2">Transaksi Terbaru</h1>
+                        <div class="overflow-y-scroll h-32" id="list-transaksi">
 
-                            <ul></ul>
+                           
+                             <ul>Belum ada transaksi.</ul>
+                              
+                        </div>
+
+                    </div>
+                    <div>
+                        <button id="reset" class="bg-blue-500 px-4 py-1 rounded text-white">Reset</button>
+                    </div>
+                    <div class="m-4 ">
+                        <div class="bg-emerald-200 h-20 rounded-md px-2 py-1">
+                            <p class="text-emerald-800 font-semibold">Transaksi Masuk</p>
+                            <div class="flex h-8 mt-1">
+                                <input
+                                    type="text"
+                                    id="inputan"
+                                    placeholder="Masukan angka"
+                                    class="w-12 border-solid border-2 border-emerald-800 w-4/5 px-2 mr-2 rounded-md">
+                                <button
+                                    type="submit"
+                                    id="transaksi"
+                                    class="py-1 px-2 bg-green-600 rounded text-white">Pemasukan</button>
+                            </div>
+
                         </div>
                     </div>
-                    <div class="flex flex-col justify-end bg-indigo-800 m-4 ">
 
-                        <input
-                            type="text"
-                            id="inputan"
-                            placeholder="masukan angka"
-                            class="border-solid border-2 w-4/5">
-                        <div>
-                            <button
-                                type="submit"
-                                id="transaksi"
-                                class="bg-green-500 px-4 py-1 rounded text-white mt-2">Tambah Pemasukan</button>
-
+                    <div class="m-4 ">
+                        <div class="bg-red-300 h-20 rounded-md px-2 py-1">
+                            <p class="text-red-900 font-semibold">Transaksi Keluar</p>
+                            <div class="flex h-8 mt-1">
+                                <input
+                                    type="text"
+                                    id="inputankeluar"
+                                    placeholder="masukan angka"
+                                    class="w-12 border-solid border-2 border-red-400 w-4/5 px-2 mr-2 rounded-md">
+                                <button
+                                    type="submit"
+                                    id="btnkeluar"
+                                    class="bg-red-500 px-4 py-1 rounded text-white">Pengeluaran</button>
+                            </div>
                         </div>
-                        <div class="mt-4">
-                            <input
-                                type="text"
-                                id="inputankeluar"
-                                placeholder="masukan angka"
-                                class="border-solid border-2">
-                            <button
-                                type="submit"
-                                id="btnkeluar"
-                                class="bg-red-500 px-4 py-1 rounded text-white mt-2">Pengeluaran</button>
-                        </div>
-                    </div>
-                    <div class="flex justify-end px-4">
-                        <button id="reset" class="bg-blue-500 px-4 py-1 rounded text-white mt-2 ">Reset</button>
                     </div>
                 </div>
 

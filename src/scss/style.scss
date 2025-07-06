@@ -4,7 +4,7 @@
     padding: 0;
     list-style-type: none;
     box-sizing: border-box;
-     font-family: 'Inter', sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 main {
     height: 100vh;
@@ -47,14 +47,10 @@ main {
 .transaksi {
     background: $primary-color;
     width: 360px;
-    height: 250px;
+    height: 170px;
     border-radius: $border-radius10;
     box-shadow: $shadow;
     margin: 20px;
-    display: flex;  
-    flex-direction: column; 
-    justify-content: space-around;
-    overflow: hidden;
 }
 .transaksi p {
     text-align: center;
