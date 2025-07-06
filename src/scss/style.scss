@@ -4,7 +4,7 @@
     padding: 0;
     list-style-type: none;
     box-sizing: border-box;
-    font-family: "Roboto", sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 main {
     height: 100vh;
@@ -54,6 +54,17 @@ main {
 }
 .transaksi p {
     text-align: center;
+}
+#list-transaksi ul {
+    
+}
+#list-transaksi li {
+    display:  flex;
+    justify-content: center;
+    color: green;
+    background-color: tomato;
+    margin-bottom: 2px;
+    width: 80%;
 }
 
 button {

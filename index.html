@@ -10,9 +10,9 @@
             rel="preconnect"
             href="https://fonts.gstatic.com"
             crossorigin="crossorigin">
-        <link
-            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-            rel="stylesheet">
+       <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
         <script src="https://cdn.tailwindcss.com"></script>
     </head>
     <body>
@@ -42,23 +42,25 @@
                     </div>
                     <div class="transaksi p-2">
                         <h1 class="mb-1 text-lg font-semibold border-b-2">Transaksi Terbaru</h1>
-                        <div class="overflow-y-scroll h-32" id="list-transaksi">
+                        <div class="overflow-y-scroll h-32 flex flex-col justify-center " >
 
                            
-                             <ul>Belum ada transaksi.</ul>
+                             <ul id="list-transaksi" class="flex flex-col justify-center items-center">
+                               
+                             </ul>
                               
                         </div>
 
                     </div>
                     <div class="flex justify-center items-center">
-                        <button id="reset" class="bg-gray-500 p-2 rounded text-white w-3/4  block hover:bg-gray-600">Reset</button>
+                        <button id="reset" class="bg-zinc-700 p-2 rounded-lg text-white w-2/4  block hover:bg-gray-600">Reset Data</button>
                     </div>
                     <div class="m-4 ">
                         <div class="bg-emerald-200 h-20 rounded-md px-2 py-1">
                             <p class="text-emerald-800 font-semibold">Transaksi Masuk</p>
                             <div class="flex h-8 mt-1">
                                 <input
-                                    type="text"
+                                    type="number"
                                     id="inputan"
                                     placeholder="Masukan angka"
                                     class="w-12 h-10 border-solid border-2 border-emerald-800 w-4/5 px-2 mr-2 rounded-md">
@@ -76,7 +78,7 @@
                             <p class="text-red-900 font-semibold">Transaksi Keluar</p>
                             <div class="flex h-8 mt-1">
                                 <input
-                                    type="text"
+                                    type="number"
                                     id="inputankeluar"
                                     placeholder="Masukan angka"
                                     class="w-12 h-10 border-solid border-2 border-red-400 w-4/5 px-2 mr-2 rounded-md">

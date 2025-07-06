@@ -10,13 +10,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const pengeluaran = document.getElementById('pengeluaran');
     const totalSaldoEl = document.getElementById('totalSaldo');
 
-
+    let transaction = [];
 
     transaksi.addEventListener('click', () => {
 
         tambahData();
         saldoBersih();
-       
 
     });
 
@@ -41,7 +40,9 @@ document.addEventListener("DOMContentLoaded", () => {
     totalSaldoEl.innerText = formatCurrency(totalSaldo);
 
     function tambahData() {
-        const proms = inputan.value.trim();
+        const proms = inputan
+            .value
+            .replace(/\D/g, "");
         inputan.value = '';
 
         if (proms !== '' && proms !== null) {
@@ -57,11 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 //simpan total saldo baru ke localStorage
                 localStorage.setItem('saldo-masuk', totalSaldo);
 
-               
-
                 saldoEl.innerText = formatCurrency(totalSaldo);
-
-
 
                 const listMasuk = document.getElementById('list-transaksi');
                 const item = document.createElement("li");
@@ -72,8 +69,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 item.innerText = formatCurrency(proms);
                 listMasuk.appendChild(item);
-                item.style.color = 'green';
-
+               // item.style.color = 'white';
+               // item.style.backgroundColor = 'green';
+               // item.style.borderRadius = '5px';
+               // item.style.height = '40px';
+               // item.style.width = '60% ';
                 proms.value = '';
             } else {
                 alert('nilai harus number');
@@ -115,6 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function saldoPengeluaran() {
         const keluaran = inputanKeluar.value;
+        keluaran = keluaran.replace(/\D/g, "");
 
         if (keluaran !== '' && keluaran !== null) {
             const nilaiKeluar = Math.floor(parseFloat(keluaran));
@@ -143,13 +144,10 @@ document.addEventListener("DOMContentLoaded", () => {
     function saldoBersih() {
         const saldoPemasukan = localStorage.getItem("saldo-masuk");
         const saldoPengeluaran = localStorage.getItem("pengeluaran");
-        
-
 
         const calculateSaldo = saldoPemasukan - saldoPengeluaran;
         localStorage.setItem('saldoBersih', calculateSaldo);
 
-       
         localStorage.getItem('saldoBersih', calculateSaldo);
         totalSaldoEl.innerText = formatCurrency(calculateSaldo);
     }
