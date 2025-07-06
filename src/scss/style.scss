@@ -1,0 +1,66 @@
+@use 'variable' as *;
+* {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    box-sizing: border-box;
+     font-family: 'Inter', sans-serif;
+}
+main {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.kotak-belanja {
+    display: flex;
+    background-color: $primary-color;
+    box-shadow: $shadow;
+    height: 800px;
+    width: 400px;
+    border-radius: $border-radius30;
+    
+    
+}
+
+
+.total-saldo {
+    background: $second-color;
+    width: 360px;
+    height: 200px;
+    border-radius: $border-radius10;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    text-align: center;
+    color: $primary-color;
+   
+}
+
+.rekap {
+    display: flex;
+    justify-content: space-around;
+}
+
+.transaksi {
+    background: $primary-color;
+    width: 360px;
+    height: 250px;
+    border-radius: $border-radius10;
+    box-shadow: $shadow;
+    margin: 20px;
+    display: flex;  
+    flex-direction: column; 
+    justify-content: space-around;
+    overflow: hidden;
+}
+.transaksi p {
+    text-align: center;
+}
+
+button {
+    padding: 5px 10px;
+    display: flex;
+}

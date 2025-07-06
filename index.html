@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Todolist Belanja</title>
+        <link rel="stylesheet" href="dist/css/style.css"/>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+            rel="stylesheet">
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body>
+
+        <main>
+            <div class="kotak-belanja">
+                <div>
+                    <div class="flex justify-center items-center bg-blue-500 rounded-2xl h-[70px]">
+                        <h1 class="text-xl font-semibold text-white">Belanja Bulanan</h1>
+                    </div>
+
+                    <div class="total-saldo">
+                        <h3>Saldo Bersih Bulan Ini</h3>
+                        <h1 id="totalSaldo" class="text-4xl font-semibold"></h1>
+                        <div class="rekap">
+                            <div>
+                                <h4>Pemasukan</h4>
+                                <span id="saldo-masuk" style="color: aquamarine;"></span>
+                            </div>
+                            <div class="pengeluaran">
+                                <h4>Pengeluarn</h4>
+                                <span id="pengeluaran" style="color:rgb(235, 23, 23);"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="transaksi">
+                        <h3>Transaksi Terbaru</h3>
+                        <div class="list-transaksi" id="list-transaksi">
+
+                            <ul></ul>
+                        </div>
+                    </div>
+                    <div class="flex flex-col justify-end bg-indigo-800 m-4 ">
+
+                        <input
+                            type="text"
+                            id="inputan"
+                            placeholder="masukan angka"
+                            class="border-solid border-2 w-4/5">
+                        <div>
+                            <button
+                                type="submit"
+                                id="transaksi"
+                                class="bg-green-500 px-4 py-1 rounded text-white mt-2">Tambah Pemasukan</button>
+
+                        </div>
+                        <div class="mt-4">
+                            <input
+                                type="text"
+                                id="inputankeluar"
+                                placeholder="masukan angka"
+                                class="border-solid border-2">
+                            <button
+                                type="submit"
+                                id="btnkeluar"
+                                class="bg-red-500 px-4 py-1 rounded text-white mt-2">Pengeluaran</button>
+                        </div>
+                    </div>
+                    <div class="flex justify-end px-4">
+                        <button id="reset" class="bg-blue-500 px-4 py-1 rounded text-white mt-2 ">Reset</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+
+        <script src="script.js"></script>
+    </body>
+</html>
