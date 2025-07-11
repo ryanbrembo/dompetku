@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const pengeluaran = document.getElementById('pengeluaran');
     const totalSaldoEl = document.getElementById('totalSaldo');
 
-    let transaction = [];
+
 
     transaksi.addEventListener('click', () => {
 
@@ -114,8 +114,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     function saldoPengeluaran() {
-        const keluaran = inputanKeluar.value;
-        keluaran = keluaran.replace(/\D/g, "");
+        const keluaran = inputanKeluar.value.replace(/\D/g, "");
+        keluaran.value = '';
 
         if (keluaran !== '' && keluaran !== null) {
             const nilaiKeluar = Math.floor(parseFloat(keluaran));
