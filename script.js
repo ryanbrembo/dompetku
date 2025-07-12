@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
         updateUI();
     }
 
-    function saveDataToLocalStorage() {
+    function simpanDataLocalStorage() {
         localStorage.setItem('saldo-masuk', saldoEl.innerText.replace(/\D/g, ''));
         localStorage.setItem('pengeluaran', pengeluaran.innerText.replace(/\D/g, ''));
         localStorage.setItem('saldoBersih', totalSaldoEl.innerText.replace(/\D/g, ''));
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
             transaksiListEl.appendChild(listItem);
         });
 
-        saveDataToLocalStorage();
+        simpanDataLocalStorage();
     }
 
     transaksiListEl.addEventListener('click', (e) => {
