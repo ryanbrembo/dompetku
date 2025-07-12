@@ -9,15 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const pengeluaran = document.getElementById('pengeluaran');
     const totalSaldoEl = document.getElementById('totalSaldo');
+    const transaksiListEl = document.getElementById('list-transaksi');
 
-
-
-    transaksi.addEventListener('click', () => {
-
-        tambahData();
-        saldoBersih();
-
-    });
+    let transaction = [];
 
     function formatCurrency(nilai) {
         return new Intl
@@ -29,127 +23,143 @@ document.addEventListener("DOMContentLoaded", () => {
             .format(nilai);
     }
 
-    //memformat currency pemasukan
-    let saldoMasukAwal = parseInt(localStorage.getItem('saldo-masuk') || 0);
-    saldoEl.innerText = formatCurrency(saldoMasukAwal);
-
-    let saldoKeluarAwal = parseInt(localStorage.getItem('pengeluaran') || 0);
-    pengeluaran.innerText = formatCurrency(saldoKeluarAwal);
-
-    let totalSaldo = parseInt(localStorage.getItem("saldoBersih") || 0);
-    totalSaldoEl.innerText = formatCurrency(totalSaldo);
-
-    function tambahData() {
-        const proms = inputan
-            .value
-            .replace(/\D/g, "");
-        inputan.value = '';
-
-        if (proms !== '' && proms !== null) {
-            const nilai = Math.floor(parseFloat(proms));
-
-            if (!isNaN(nilai)) {
-
-                //ambil data saldo sebelumnya
-                let saldoSebelum = parseInt(localStorage.getItem('saldo-masuk') || 0);
-                //penjumlahan saldo sebelum + inputan nilai baru
-                let totalSaldo = saldoSebelum + nilai;
-
-                //simpan total saldo baru ke localStorage
-                localStorage.setItem('saldo-masuk', totalSaldo);
-
-                saldoEl.innerText = formatCurrency(totalSaldo);
-
-                const listMasuk = document.getElementById('list-transaksi');
-                const item = document.createElement("li");
-
-                let listSaldoMasuk = parseInt(localStorage.getItem('list-saldo-masuk'));
-
-                localStorage.setItem('list-saldo-masuk', listSaldoMasuk);
-
-                item.innerText = formatCurrency(proms);
-                listMasuk.appendChild(item);
-               // item.style.color = 'white';
-               // item.style.backgroundColor = 'green';
-               // item.style.borderRadius = '5px';
-               // item.style.height = '40px';
-               // item.style.width = '60% ';
-                proms.value = '';
-            } else {
-                alert('nilai harus number');
-            }
-
-        } else {
-            alert('input tidak bboleh kosong');
+    function loadInitialData() {
+        const storedTransactions = localStorage.getItem('transactions');
+        if (storedTransactions) {
+            transaction = JSON.parse(storedTransactions);
         }
-
+        updateUI();
     }
 
-    //function untuk reset nilai keseluruhan
-    function updateSaldoDisplay() {
+    function saveDataToLocalStorage() {
+        localStorage.setItem('saldo-masuk', saldoEl.innerText.replace(/\D/g, ''));
+        localStorage.setItem('pengeluaran', pengeluaran.innerText.replace(/\D/g, ''));
+        localStorage.setItem('saldoBersih', totalSaldoEl.innerText.replace(/\D/g, ''));
+        localStorage.setItem('transactions', JSON.stringify(transaction));
+    }
 
-        if (saldoEl && pengeluaran && totalSaldoEl) {
-            saldoEl.innerText = 'Rp 0';
-            pengeluaran.innerText = 'Rp 0';
-            totalSaldoEl.innerText = 'Rp 0';
+    function updateUI() {
+        let currentIncome = 0;
+        let currentExpense = 0;
 
+        transaction.forEach(trans => {
+            if (trans.type === 'pemasukan') {
+                currentIncome += trans.amount;
+            } else if (trans.type === 'pengeluaran') {
+                currentExpense += trans.amount;
+            }
+        });
+
+        saldoEl.innerText = formatCurrency(currentIncome);
+        pengeluaran.innerText = formatCurrency(currentExpense);
+
+        const netBalance = currentIncome - currentExpense;
+        totalSaldoEl.innerText = formatCurrency(netBalance);
+
+        transaksiListEl.innerHTML = '';
+        transaction.forEach((trans, index) => {
+            const listItem = document.createElement("li");
+            listItem.className = `flex justify-between items-center p-3 rounded-lg mb-2 ${trans.type === 'pemasukan' ? 'bg-green-50' : 'bg-red-50'}`;
+
+            listItem.innerHTML = `
+                <div>
+                    <p class="font-semibold ${trans.type === 'pemasukan' ? 'text-green-700' : 'text-red-700'}">
+                        ${trans.type === 'pemasukan' ? 'Pemasukan' : 'Pengeluaran'}
+                    </p>
+                    <p class="text-xs text-gray-500">${trans.date}</p>
+                </div>
+                <p class="font-bold text-lg ${trans.type === 'pemasukan' ? 'text-green-600' : 'text-red-600'}">
+                    ${formatCurrency(trans.amount)}
+                </p>
+                <button class="ml-4 px-2 py-1 bg-red-400 text-white rounded hover:bg-red-600" data-index="${index}">Hapus</button>
+            `;
+            transaksiListEl.appendChild(listItem);
+        });
+
+        saveDataToLocalStorage();
+    }
+
+    transaksiListEl.addEventListener('click', (e) => {
+        if (e.target.tagName === 'BUTTON' && e.target.textContent === 'Hapus') {
+            const indexToDelete = parseInt(e.target.dataset.index);
+            transaction.splice(indexToDelete, 1);
+            updateUI();
         }
+    });
+
+    function tambahData() {
+        const proms = inputan.value;
+
+        if (proms === '' || proms === null) {
+            alert('Input tidak boleh kosong');
+            return;
+        }
+
+        const nilai = parseFloat(proms);
+        if (isNaN(nilai) || nilai <= 0) {
+            alert('Nilai harus angka positif');
+            return;
+        }
+
+        transaction.push({
+            type: 'pemasukan',
+            amount: nilai,
+            date: new Date().toLocaleString('id-ID', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            })
+        });
+
+        inputan.value = '';
+        updateUI();
+    }
+
+    function saldoPengeluaran() {
+        const keluaran = inputanKeluar.value;
+
+        if (keluaran === '' || keluaran === null) {
+            alert('Input tidak boleh kosong');
+            return;
+        }
+
+        const nilaiKeluar = parseFloat(keluaran);
+        if (isNaN(nilaiKeluar) || nilaiKeluar <= 0) {
+            alert('Harus nomor positif');
+            return;
+        }
+
+        transaction.push({
+            type: 'pengeluaran',
+            amount: nilaiKeluar,
+            date: new Date().toLocaleString('id-ID', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            })
+        });
+
+        inputanKeluar.value = '';
+        updateUI();
     }
 
     reset.addEventListener('click', () => {
-        localStorage.removeItem('saldo-masuk');
-        localStorage.removeItem('pengeluaran');
-        localStorage.removeItem('saldoBersih');
-        localStorage.removeItem('list-saldo-masuk');
-        updateSaldoDisplay();
-
+        localStorage.clear();
+        transaction = [];
+        updateUI();
     });
 
-    // --------------------------
+    transaksi.addEventListener('click', () => {
+        tambahData();
+    });
 
     btnKeluar.addEventListener('click', () => {
         saldoPengeluaran();
-        saldoBersih();
-
     });
 
-    function saldoPengeluaran() {
-        const keluaran = inputanKeluar.value.replace(/\D/g, "");
-        keluaran.value = '';
-
-        if (keluaran !== '' && keluaran !== null) {
-            const nilaiKeluar = Math.floor(parseFloat(keluaran));
-
-            if (!isNaN(nilaiKeluar)) {
-                const saldoKeluarAwal = parseInt(localStorage.getItem('pengeluaran') || 0);
-                totalSaldoKeluar = saldoKeluarAwal + nilaiKeluar;
-
-                localStorage.setItem("pengeluaran", totalSaldoKeluar);
-
-                const formateds = formatCurrency(totalSaldoKeluar);
-
-                pengeluaran.innerText = formateds;
-                inputanKeluar.value = '';
-            } else {
-                alert('harus nomor');
-
-            }
-        } else {
-            alert('tidak boleh kosong');
-        }
-    }
-
-    /*----------------SALDO KELUAR-----------------*/
-
-    function saldoBersih() {
-        const saldoPemasukan = localStorage.getItem("saldo-masuk");
-        const saldoPengeluaran = localStorage.getItem("pengeluaran");
-
-        const calculateSaldo = saldoPemasukan - saldoPengeluaran;
-        localStorage.setItem('saldoBersih', calculateSaldo);
-
-        localStorage.getItem('saldoBersih', calculateSaldo);
-        totalSaldoEl.innerText = formatCurrency(calculateSaldo);
-    }
-
+    loadInitialData();
 });
