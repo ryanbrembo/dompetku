@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
             listItem.className = `flex justify-between items-center p-3 rounded-lg mb-2 ${trans.type === 'pemasukan' ? 'bg-green-50' : 'bg-red-50'}`;
 
             listItem.innerHTML = `
-                <div>
+                <div class="">
                     <p class="font-semibold ${trans.type === 'pemasukan' ? 'text-green-700' : 'text-red-700'}">
                         ${trans.type === 'pemasukan' ? 'Pemasukan' : 'Pengeluaran'}
                     </p>
