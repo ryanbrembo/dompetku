@@ -1,0 +1,51 @@
+
+
+<div class="">
+    <div
+        class="flex flex-col justify-center items-center bg-gradient-to-r from-blue-500 to-blue-800 rounded-t-2xl h-[100px] w-auto">
+        <h1 class="text-2xl font-semibold text-white">Dompet Ku</h1>
+        <p class="text-white">Kelola keuangan anda dengan mudah</p>
+    </div>
+
+    <div class="total-saldo">
+        <h3>Saldo Anda</h3>
+        <h1 id="totalSaldo" class="text-4xl font-semibold">Rp 0</h1>
+        <div class="rekap">
+            <div>
+                <h4>Pemasukan</h4>
+                <span id="saldo-masuk" class="text-emerald-400">Rp 0</span>
+            </div>
+            <div class="pengeluaran">
+                <h4>Pengeluaran</h4>
+                <span id="pengeluaran" class="text-red-400">Rp 0</span>
+            </div>
+        </div>
+    </div>
+    <div class="transaksi p-2">
+        <h1 class="mb-1 text-lg font-semibold border-b-2">Transaksi Terbaru</h1>
+        <div class="overflow-y-scroll h-32 flex flex-col">
+
+            <ul id="list-transaksi"></ul>
+
+        </div>
+
+    </div>
+    <div class="flex justify-center items-center">
+        <button
+            id="reset"
+            class="bg-neutral-700 p-2 rounded-lg text-white w-28 shadow-2xl block hover:bg-neutral-500">Reset Data</button>
+    </div>
+    <div
+        class="grid place-items-end h-28 px-4" data-page="transaksi"  >
+        <button id="addTransaction" class="flex items-center justify-center text-white rounded-full h-12 w-12 bg-green-600">
+             <svg
+            class="h-8 "
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 448 512"><path
+            d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"/></svg>
+        </button>
+
+       <script src="/src/components/js/dashboard.js"></script>
+    </div>
+</div>

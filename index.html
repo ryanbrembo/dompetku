@@ -1,104 +1,57 @@
 <!DOCTYPE html>
 <html lang="id">
-    <head>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>DompetKu</title>
-        <link rel="stylesheet" href="dist/css/style.css"/>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link
-            rel="preconnect"
-            href="https://fonts.gstatic.com"
-            crossorigin="crossorigin">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link
-            rel="preconnect"
-            href="https://fonts.gstatic.com"
-            crossorigin="crossorigin">
-        <link
-            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-            rel="stylesheet">
-        <script src="https://cdn.tailwindcss.com"></script>
-    </head>
-    <body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DompetKu</title>
+    <link rel="stylesheet" href="dist/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin="crossorigin"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <main>
+      <div class="kotak-belanja">
+        <div id="main-content"></div>
+        <nav class="bg-gray-800 p-4 rounded-b-2xl absolute bottom-0 w-full"  id="nav-links">
+          <ul class="flex justify-around items-center text-white">
+            <li>
+              <a href="" data-link="dashboard" class="hover:text-blue-400"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a href="" data-link="transactionOption" class="hover:text-blue-400"
+                >Catatan</a
+              >
+            </li>
+            <li>
+              <a href="" class="hover:text-blue-400">Statistik</a>
+            </li>
+            <li>
+              <a href="" class="hover:text-blue-400">Pengaturan</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </main>
 
-        <main>
-            <div class="kotak-belanja">
-                <div>
-                    <div
-                        class="flex flex-col justify-center items-center bg-gradient-to-r from-blue-500 to-blue-800 rounded-t-2xl h-[100px]">
-                        <h1 class="text-2xl font-semibold text-white">Dompet Ku</h1>
-                        <p class="text-white">Kelola keuangan anda dengan mudah</p>
-                    </div>
-
-                    <div class="total-saldo">
-                        <h3>Saldo Anda</h3>
-                        <h1 id="totalSaldo" class="text-4xl font-semibold"></h1>
-                        <div class="rekap">
-                            <div>
-                                <h4>Pemasukan</h4>
-                                <span id="saldo-masuk" class="text-emerald-400"></span>
-                            </div>
-                            <div class="pengeluaran">
-                                <h4>Pengeluaran</h4>
-                                <span id="pengeluaran" class="text-red-400"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="transaksi p-2">
-                        <h1 class="mb-1 text-lg font-semibold border-b-2">Transaksi Terbaru</h1>
-                        <div class="overflow-y-scroll h-32 flex flex-col">
-
-                            <ul id="list-transaksi"></ul>
-
-                        </div>
-
-                    </div>
-                    <div class="flex justify-center items-center">
-                        <button
-                            id="reset"
-                            class="bg-neutral-700 p-2 rounded-lg text-white w-28 shadow-2xl block hover:bg-neutral-500">Reset Data</button>
-                    </div>
-                    <div class="m-4 ">
-                        <div class="bg-emerald-200 h-20 rounded-md px-2 py-1">
-                            <p class="text-emerald-800 font-light">Transaksi Masuk</p>
-                            <div class="flex h-8 mt-1">
-                                <input
-                                    type="number"
-                                    id="inputan"
-                                    placeholder="Masukan angka"
-                                    class="w-12 h-10 border-solid border-2 border-emerald-800 w-4/5 px-2 mr-2 rounded-md">
-                                <button
-                                    type="submit"
-                                    id="transaksi"
-                                    class="h-10 p-2 bg-green-600 hover:bg-green-800 rounded text-white">Pemasukan</button>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="m-4 ">
-                        <div class="bg-red-300 h-20 rounded-md px-2 py-1">
-                            <p class="text-red-600 font-light">Transaksi Keluar</p>
-                            <div class="flex h-8 mt-1">
-                                <input
-                                    type="number"
-                                    id="inputankeluar"
-                                    placeholder="Masukan angka"
-                                    class="w-12 h-10 border-solid border-2 border-red-400 w-4/5 px-2 mr-2 rounded-md">
-                                <button
-                                    type="submit"
-                                    id="btnkeluar"
-                                    class="h-10 p-2 bg-red-500 hover:bg-red-700 rounded text-white">Pengeluaran</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-        </main>
-
-        <script src="script.js"></script>
-    </body>
+     <script type="module" src="/src/components/js/app.js"></script>
+  </body>
+ 
 </html>
