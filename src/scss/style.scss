@@ -15,7 +15,6 @@ main {
 .kotak-belanja {
     display: flex;
     background-color: $primary-color;
-    position: relative;
     box-shadow: $shadow;
     height: 800px;
     width: 400px;
@@ -62,4 +61,3 @@ button {
     padding: 5px 10px;
     display: flex;
 }
-
