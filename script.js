@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 </p>
                 <button class="ml-4 px-2 py-1 bg-red-400 text-white rounded hover:bg-red-600" data-index="${index}">Hapus</button>
             `;
-            transaksiListEl.prependChild(listItem);
+            transaksiListEl.appendChild(listItem);
         });
 
         simpanDataLocalStorage();
