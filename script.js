@@ -146,13 +146,13 @@ document.addEventListener("DOMContentLoaded", () => {
         inputanKeluar.value = '';
         updateUI();
     }
-
+/*
     reset.addEventListener('click', () => {
         localStorage.clear();
         transaction = [];
         updateUI();
     });
-
+*/
     transaksi.addEventListener('click', () => {
         tambahData();
     });
